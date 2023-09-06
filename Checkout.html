@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+</head>
+<body>
+  <div class="container">
+    <h2>Checkout</h2>
+    <div class="item">
+      <label for="tripType">Trip Type:</label>
+      <select id="tripType">
+        <option value="solo">Solo</option>
+        <option value="group">Group</option>
+      </select>
+    </div>
+
+    <div class="item">
+      <label>Price per person:</label>
+      <span id="pricePerPerson">3500</span>
+    </div>
+
+    <div class="item">
+      <label for="numberOfTravelers">Number of Travelers:</label>
+      <input type="number" id="numberOfTravelers" value="1" min="1">
+    </div>
+
+    <div class="total">
+      <p id="totalAmountLine1"></p>
+      <p id="totalAmountLine2"></p>
+    </div>
+
+    <button onclick="calculateTotal()">Calculate</button>
+    <a href="Payment.html"><button onclick="calculateTotal()">Proceed</button>
+    </a>
+
+  </div>
+
+</body>
+</html>
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      margin: 100px auto;
+    }
+    
+    h2 {
+      color: #2196F3;
+    }
+    
+    .item, .total {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      margin-right: 5px;
+      font-weight: bold;
+    }
+    
+    input, select {
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #2196F3;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+  </style>
+
+  <script>
+    const pricePerPerson = 3500;
+
+function calculateTotal() {
+  const tripType = document.getElementById("tripType").value;
+  const numberOfTravelers = parseInt(document.getElementById("numberOfTravelers").value);
+  let totalAmountLine1, totalAmountLine2;
+
+  if (tripType === "solo") {
+    totalAmountLine1 = `Total Amount (Solo):`;
+    totalAmountLine2 = `${pricePerPerson.toFixed(2)}`;
+  } else {
+    totalAmountLine1 = `Total Amount (Group, ${numberOfTravelers} travelers):`;
+    const totalAmount = pricePerPerson * numberOfTravelers;
+    totalAmountLine2 = `${totalAmount.toFixed(2)}`;
+  }
+
+  document.getElementById("totalAmountLine1").textContent = totalAmountLine1;
+  document.getElementById("totalAmountLine2").textContent = totalAmountLine2;
+
+}
+  </script>
+</body>
+</html>
